@@ -2,7 +2,7 @@ package arciv
 
 import "encoding/xml"
 
-type QueryResult struct {
+type SearchResult struct {
 	XMLName      xml.Name `xml:"feed"`
 	Title        string   `xml:"title"`
 	Link         Link     `xml:"link"`

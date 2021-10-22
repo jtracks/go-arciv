@@ -10,9 +10,9 @@ import (
 )
 
 // Test decoding an xml file from arXiv query response
-// into a QueryResult
-func TestQueryResultUnmarshal(t *testing.T) {
-	var query QueryResult
+// into a SearchResult
+func TestSearchResultUnmarshal(t *testing.T) {
+	var result SearchResult
 
 	xmlFile, err := os.Open(filepath.Join("..", "testdata", "queryresult.xml"))
 
@@ -28,13 +28,13 @@ func TestQueryResultUnmarshal(t *testing.T) {
 		t.Error(err)
 	}
 
-	err = xml.Unmarshal(body, &query)
+	err = xml.Unmarshal(body, &result)
 
 	if err != nil {
 		t.Error(err)
 	}
 
-	if reflect.DeepEqual(query, QueryResult{}) {
-		t.Error("Failed to unmarshal QueryResult from xml")
+	if reflect.DeepEqual(result, SearchResult{}) {
+		t.Error("Failed to unmarshal SearchResult from xml")
 	}
 }

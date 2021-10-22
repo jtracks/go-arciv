@@ -13,7 +13,7 @@ import (
 
 // Download all pfd for the entries in QueryResult
 //	return error if any fetch has failed
-func (qr QueryResult) DownloadPdfs() ([]string, []*bytes.Buffer, error) {
+func (qr SearchResult) DownloadPdfs() ([]string, []*bytes.Buffer, error) {
 	// TODO, could be made concurrent?
 
 	var numUrls int = len(qr.Entries)

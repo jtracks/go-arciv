@@ -9,7 +9,7 @@ import (
 // Testdata
 const pdfUrl = "http://arxiv.org/pdf/astro-ph/0608371v1"
 
-var resultExample = QueryResult{
+var resultExample = SearchResult{
 	ItemsPerPage: "2",
 	Entries: []Entry{
 		{
@@ -102,7 +102,7 @@ func TestEntryDownloadPdf(t *testing.T) {
 	}
 }
 
-func TestQueryResultDownloadPdfs(t *testing.T) {
+func TestSearchResultDownloadPdfs(t *testing.T) {
 	filenames, bufs, err := resultExample.DownloadPdfs()
 
 	if err != nil {
