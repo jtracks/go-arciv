@@ -10,12 +10,17 @@ import (
 
 const BaseURL = "http://export.arxiv.org/api/"
 
-func Search(query Query) (SearchResult, error) {
+// Call the arxiv search api using a SimpleQuery or AdvancedQuery
+// return *SearchResult, error
+func Search(query Query) (*SearchResult, error) {
 
 	return CustomSearch(query.QueryString())
 
 }
-func CustomSearch(query string) (SearchResult, error) {
+
+// Call the arxiv search api using a string as query
+// return *SearchResult, error
+func CustomSearch(query string) (*SearchResult, error) {
 
 	var result SearchResult
 	var err error
@@ -26,12 +31,12 @@ func CustomSearch(query string) (SearchResult, error) {
 	resp, err := http.Get(url)
 
 	if err != nil {
-		return result, err
+		return &result, err
 	}
 
 	log.Printf("Response code: %v\n", resp.StatusCode)
 	if resp.StatusCode != 200 {
-		return result, fmt.Errorf(
+		return &result, fmt.Errorf(
 			"request failed with code: %v",
 			resp.StatusCode)
 	}
@@ -41,14 +46,14 @@ func CustomSearch(query string) (SearchResult, error) {
 	body, err := io.ReadAll(resp.Body)
 
 	if err != nil {
-		return result, err
+		return &result, err
 	}
 
 	err = xml.Unmarshal(body, &result)
 
 	if err != nil {
-		return result, err
+		return &result, err
 	}
 
-	return result, nil
+	return &result, nil
 }

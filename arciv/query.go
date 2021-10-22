@@ -26,7 +26,7 @@ func (s SimpleQuery) QueryString() string {
 type AdvancedQuery struct {
 	Search     string
 	IdList     []string
-	Start      int
+	StartIndex int
 	MaxResults int
 	SortBy     SortStrategy
 	SortOrder  SortRule
@@ -34,21 +34,21 @@ type AdvancedQuery struct {
 
 func (s AdvancedQuery) QueryString() string {
 	return fmt.Sprintf(
-		"%vsearch_query=:all%v&start=0&max_results=%v",
-		baseQuery, s.Search, s.MaxResults)
+		"%vsearch_query=all:%v&start=%v&max_results=%v",
+		baseQuery, s.Search, s.StartIndex, s.MaxResults)
 }
 
 type SortStrategy string
 
 const (
 	Relevance      SortStrategy = "relevance"
-	LastUpdateDate              = "lastUpdateDate"
-	SubmittedDate               = "submittedDate"
+	LastUpdateDate SortStrategy = "lastUpdateDate"
+	SubmittedDate  SortStrategy = "submittedDate"
 )
 
 type SortRule string
 
 const (
 	Ascending  SortRule = "ascending"
-	Descending          = "descending"
+	Descending SortRule = "descending"
 )

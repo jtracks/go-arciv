@@ -49,19 +49,19 @@ func TestDownloadFileFromUrl(t *testing.T) {
 	buf, err := DownloadFileFromUrl(pdfUrl)
 	if err != nil || buf == nil {
 		log.Printf(
-			"Failed to download from url: %v\n"+
+			"failed to download from url: %v\n"+
 				"Error: %v", pdfUrl, err)
 		t.FailNow()
 	}
 
 	if buf.Len() == 0 {
-		log.Printf("No empty buffer for url: %v", pdfUrl)
+		log.Printf("no empty buffer for url: %v", pdfUrl)
 		t.FailNow()
 	}
 
 	content := buf.String()
 	if content == "" || content[0:4] != "%PDF" {
-		log.Printf("Failed to decode for url: %v", pdfUrl)
+		log.Printf("failed to decode for url: %v", pdfUrl)
 		t.FailNow()
 	}
 }
@@ -71,11 +71,11 @@ func TestEntryPdfUrl(t *testing.T) {
 	url, err := resultExample.Entries[0].PdfUrl()
 
 	if err != nil {
-		log.Printf("Error in collecting pdfurl: %v", err)
+		log.Printf("error in collecting pdfurl: %v", err)
 		t.FailNow()
 	}
 
-	if url == "" || !strings.Contains(url, "https://") {
+	if url == "" || !strings.Contains(url, "http") {
 		log.Printf("Pdfurl is not a url: %v", url)
 		t.FailNow()
 	}
@@ -86,7 +86,7 @@ func TestEntryDownloadPdf(t *testing.T) {
 	filename, buf, err := resultExample.Entries[0].DownloadPdf()
 
 	if err != nil {
-		log.Printf("Error in collecting pdf: %v", err)
+		log.Printf("error in collecting pdf: %v", err)
 		t.FailNow()
 	}
 
@@ -97,7 +97,7 @@ func TestEntryDownloadPdf(t *testing.T) {
 
 	content := buf.String()
 	if content == "" || content[0:4] != "%PDF" {
-		log.Print("Failed to decode pdf")
+		log.Print("failed to decode pdf")
 		t.FailNow()
 	}
 }
@@ -119,7 +119,7 @@ func TestSearchResultDownloadPdfs(t *testing.T) {
 		}
 
 		if content == "" || content[0:4] != "%PDF" {
-			log.Print("Failed to decode pdf")
+			log.Print("failed to decode pdf")
 			t.FailNow()
 		}
 	}
