@@ -1,10 +1,17 @@
 # go-arciv
+![Tests](https://github.com/jtracks/go-arciv/actions/workflows/test.yml/badge.svg)
+[![Docs](https://pkg.go.dev/badge/jtracks/go-arciv)](https://pkg.go.dev/github.com/jtracks/go-arciv)
+## About
 Unofficial golang package for interacting with the [arXiv API](https://arxiv.org/help/api/user-manual)
 
 ## Installation
 
+``` bash
 go get github.com/jtracks/go-arciv/arciv
+```
 
+## Documentation
+[arciv package go doc](https://pkg.go.dev/github.com/jtracks/go-arciv/arciv)
 ## Usage
 
 ``` go
