@@ -91,7 +91,8 @@ func TestEntryDownloadPdf(t *testing.T) {
 	}
 
 	if filename == "" || !strings.Contains(filename, ".pdf") {
-		log.Printf("failure to create filename for pdf: %v", filename)
+		log.Printf("failure to create filename for pdf: %v, For title: %v",
+			filename, resultExample.Entries[0].Title)
 		t.FailNow()
 	}
 

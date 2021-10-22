@@ -17,8 +17,8 @@ func (qr SearchResult) DownloadPdfs() ([]string, []*bytes.Buffer, error) {
 	// TODO, could be made concurrent?
 
 	var numUrls int = len(qr.Entries)
-	var resultFilename []string = make([]string, numUrls)
-	var resultContent []*bytes.Buffer = make([]*bytes.Buffer, numUrls)
+	var resultFilename []string = make([]string, 0)
+	var resultContent []*bytes.Buffer = make([]*bytes.Buffer, 0)
 
 	// No entries?
 	if numUrls == 0 {
